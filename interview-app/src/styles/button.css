@@ -1,0 +1,16 @@
+.btn-component{
+    margin: 5px;
+    padding: 5px;
+    border-radius: 0.3rem;
+    user-select: none;
+    cursor: pointer;
+    text-align: center;
+    letter-spacing: 2px;
+    font-size: 1em;
+}
+
+.find{
+    background-color: var(--dark-color);
+    color: var(--light-color);
+    
+}

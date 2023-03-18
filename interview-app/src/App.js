@@ -1,10 +1,18 @@
-
 import './App.css';
+import Navbar from './components/Navbar';
+import Button from './components/Button';
+import SearchControl from './components/SearchControl';
+
 
 function App() {
   return (
     <div className="App">
-      <h1>Interview App</h1>
+      <Navbar title={"Interview App"}></Navbar>
+      <SearchControl></SearchControl>
+      <Button size={"md"}>Accept</Button>
+     
+
+      
       
     </div>
   );

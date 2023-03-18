@@ -1,0 +1,15 @@
+.searchControl{
+    display:  flex;
+    justify-content: flex-end;
+    align-items: center;
+
+}
+
+.search{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: baseline;
+    gap: 0.25rem;
+
+}
