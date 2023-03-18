@@ -1,17 +1,25 @@
 import React from "react";
+import Button from "./Button";
 
 
-function Item(){
+function Item({data}){
+
+    const handleDelete =()=>{
+        console.log("deleting")
+    }
 
 
     return(
         <tr className="row">
-            <td data-title="UserID">1</td>
-            <td data-title="ItemID">1</td>
-            <td data-title="Title"> "sunt aut facere repellat provident occaecati excepturi optio reprehenderit"</td>
-            <td data-title="Body">"quia et suscipit\nsuscipit recusandae consequuntur expedita et
-                         cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt 
-                         rem eveniet architecto"</td>
+            <td data-title="ItemID">{data.id}</td>
+            <td data-title="UserID">{data.userId}</td>
+            <td data-title="Title"> {data.title}</td>
+            <td data-title="Body">{data.body}</td>
+            <td data-title="Action">
+                <Button 
+                    size={"md"} 
+                    className={"delete"}
+                    onClick={()=>handleDelete()}>Delete</Button></td>
         </tr>
        
         

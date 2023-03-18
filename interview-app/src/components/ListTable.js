@@ -4,7 +4,7 @@ import Item from "./Item";
 
 
 
-function ListTable(){
+function ListTable({data}){
 
 
     return(
@@ -12,16 +12,20 @@ function ListTable(){
         <table className="table-container">
             <thead>
                 <tr className="columns">
-                    <th>UserID</th>
                     <th>ItemID</th>
+                    <th>UserID</th>
                     <th>Title</th>
                     <th>Body</th>
+                    <th>Action</th>
                 </tr>
             </thead>
                 
             <tbody className="table-body">
-                
-                <Item></Item>
+                {data.map((item)=>(
+                        <Item 
+                        key={item.id}
+                        data={item}></Item>
+                    ))}
                 
             </tbody>
             

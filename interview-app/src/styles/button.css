@@ -12,5 +12,17 @@
 .find{
     background-color: var(--dark-color);
     color: var(--light-color);
-    
+}
+
+.delete{
+    background-color: var(--dark-color);
+    color: white;
+}
+
+.newItem{
+    background-color: var(--secondary-color);
+    color: white;
+    border-color: azure;
+    font-weight: 800;
+   
 }
