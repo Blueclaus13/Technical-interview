@@ -26,7 +26,7 @@ function App() {
       <SearchControl></SearchControl>
       {openModal && 
         <Modal
-          title={"New Item"}
+          titleModal={"New Item"}
           stateModal={setOpenModal}
           ></Modal>}
       

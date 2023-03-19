@@ -1,9 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "./Button";
 import "../styles/modal.css"
 
 
-function Modal({title, stateModal}){
+function Modal({titleModal, stateModal}){
+
+    const [userId, setUserId] = useState('');
+    const [title, setTitle] = useState('');
+    const [body, setBody] = useState('');
+
+    function handleSubmit (e){
+        e.preventDefault()
+        console.log(`userID: ${userId}`);
+        console.log(`Title: ${title}`);
+        console.log(`Body: ${body}`);
+
+    };
 
 
 
@@ -12,14 +24,14 @@ function Modal({title, stateModal}){
             <div className="modal-container">
                 
                 <div className="modal-title">
-                    <h2>{title}</h2>
+                    <h2>{titleModal}</h2>
                     <button 
                         className="close-modal"
                         onClick={()=>stateModal(false)}
                         >X</button>
                 </div>
                 <div className="body">
-                    <form className="form">
+                    <form className="form" onSubmit={handleSubmit}>
                         <div className="fiel input-user">
                             <label>UserID: </label>
                             <input
@@ -27,6 +39,7 @@ function Modal({title, stateModal}){
                                 name="itemNumber"
                                 pattern="[0-9]+" 
                                 size="1"
+                                onChange={(e)=>setUserId(e.target.value)}
                                 required
                                 ></input>
                         </div>
@@ -36,7 +49,8 @@ function Modal({title, stateModal}){
                             <input 
                                 type="text"
                                 required
-                                placeholder="Add a title here"></input>
+                                placeholder="Add a title here"
+                                onChange={(e)=>setTitle(e.target.value)}></input>
                         </div>
 
                         <div className="fiel input-body">
@@ -44,20 +58,24 @@ function Modal({title, stateModal}){
                             <textarea
                                 required
                                 rows={6}
-                                placeholder="Add text here"></textarea>
+                                placeholder="Add text here"
+                                onChange={(e)=>setBody(e.target.value)}></textarea>
+                        </div>
+                        <div className="footer">
+                            <Button 
+                                size={"md"}
+                                className={"cancel"}
+                                onClick={()=>stateModal(false)}
+                                >Cancel</Button>
+                            <Button 
+                                size={"md"}
+                                type={"submit"}
+                                className={"add"}>Add</Button>
                         </div>
                     </form>
                 </div>
 
-                <div className="footer">
-                    <Button 
-                        size={"md"}
-                        className={"cancel"}
-                        onClick={()=>stateModal(false)}
-                        >Cancel</Button>
-                    <Button size={"md"}
-                        className={"add"}>Add</Button>
-                </div>
+                
             </div>
 
         </div>
