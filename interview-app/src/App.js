@@ -9,7 +9,8 @@ import Modal from './components/Modal';
 
 
 function App() {
-  const [data, setData]= useState([])
+  const [data, setData]= useState([]);
+  const [openModal, setOpenModal] = useState(false);
 
   useEffect (()=>{
     Axios.get('https://jsonplaceholder.typicode.com/posts?_start=0&_limit=20')
@@ -23,10 +24,15 @@ function App() {
     <div className="App">
       <Navbar title={"Interview App"}></Navbar>
       <SearchControl></SearchControl>
-      <Modal></Modal>
+      {openModal && 
+        <Modal
+          title={"New Item"}
+          stateModal={setOpenModal}
+          ></Modal>}
       
       <Button size={"lg"} className={"newItem"}
-          onClick={()=>console.log("Opening Modal")}>Add New Item</Button>
+          onClick={()=>{console.log("Opening Modal")
+                        setOpenModal(true)}}>Add New Item</Button>
       <ListTable data={data}></ListTable>
     </div>
   );

@@ -1,0 +1,71 @@
+.modal-back{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color:  rgba(0,0,0,.5);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+.modal-container{
+    min-width: 50%;
+    min-height: 100px;
+    background: #fff;
+    position: relative;
+    border-radius: 5px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    padding: 20px;
+}
+
+.modal-title{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid green;
+}
+
+.close-modal{
+    background-color: var(--dark-color);
+    color: white;
+    font-weight: 800;
+    padding: 1%;
+}
+
+.footer{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.form{
+    flex: 50%;
+    box-sizing: content-box;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: baseline;
+}
+
+.fiel label{
+    display: inline-block;
+    margin: 0;
+    padding: 1%;
+    width: 4rem;
+    text-align: start;
+}
+
+.input-body{
+    padding-top: 1%;
+    display: flex;
+    justify-content: baseline;
+}
+
+.input-title{
+    padding-top: 2%;
+}

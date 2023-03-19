@@ -19,10 +19,16 @@
     color: white;
 }
 
-.newItem{
+.newItem, .add{
     background-color: var(--secondary-color);
     color: white;
     border-color: azure;
     font-weight: 800;
-   
 }
+
+.cancel{
+    background-color: var(--dark-color);
+    color: white;
+}
+
+
