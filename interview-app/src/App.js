@@ -13,9 +13,10 @@ function App() {
   const [data, setData]= useState([]);
   const [openModal, setOpenModal] = useState(false);
   const [list, setList] = useState([]);
+  const [reload, setReload] = useState(false);
   let toastProperties = null;
 
-
+//List of messages to describe the action's result
   const showToast=(type, description)=>{
     switch(type){
       case 'success':
@@ -76,7 +77,6 @@ function App() {
 
     switch(type){
       case 'delete':
-
         //Delete Post
         Axios.delete(`https://jsonplaceholder.typicode.com/posts/${data.id}`,{})
         .then((response)=>{ 
@@ -102,6 +102,7 @@ function App() {
             failure(error)});
 
         break;
+
       case'new':
         // New Post
         Axios.post("https://jsonplaceholder.typicode.com/posts",{
@@ -117,10 +118,20 @@ function App() {
             failure(error)});
         
         break;
+
       case 'search':
         setData([data]);
+        setReload(true);
         break;
+        
       default:
+        Axios.get('https://jsonplaceholder.typicode.com/posts?_start=0&_limit=20')
+        .then(result=>{
+          setData(result.data);
+          })
+        .catch(err=>console.log(err))
+          setReload(false)
+        
         console.log("any option")
 
     }
@@ -135,7 +146,6 @@ function App() {
       <SearchControl
         setData={handleDataChange}
         handleMessage={showToast}></SearchControl>
-        <Button onClick={()=>showToast('success', "The message wasn't sent")}>Toast Success</Button>
 
       {openModal && 
         <Modal
@@ -146,6 +156,9 @@ function App() {
       
       <Button size={"lg"} className={"newItem"}
           onClick={()=>{setOpenModal(true)}}>Add New Item</Button>
+
+      {/* Reload button to charge again Data */}
+      {reload && <Button onClick={()=>handleDataChange("reload", {})}>Reload Data</Button>}
       
       {data.length !== 0 ? <ListTable data={data} handleDataChange={handleDataChange}></ListTable> :
       <h1 className='not-data-message'>Sorry, Data isn't available</h1>}

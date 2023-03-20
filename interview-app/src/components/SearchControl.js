@@ -24,14 +24,11 @@ function SearchControl ({setData, handleMessage}){
             Axios.get(`https://jsonplaceholder.typicode.com/posts/${value}`, {})
         .then((response)=>{ 
           console.log(response);
-          console.log(response.data);
+          //console.log(response.data);
           if(response.status === 200){
             setData('search',response.data);
           }
-          handleMessage('success', "The Post was successfully found.");
-
-            
-        })
+          handleMessage('success', "The Post was successfully found.");})
         .catch(function (error){
             if(error.response){
                 //out of 2XX
