@@ -11,7 +11,10 @@ function ModalNew({titleModal, stateModal, handleChange}){
 
     function handleSubmit (e){
         e.preventDefault();
-        handleChange(userId,title, body);
+        handleChange('new', {
+            title: title, 
+            body: body, 
+            userId: userId,});
         setUserId('');
         setTitle('');
         setBody('');

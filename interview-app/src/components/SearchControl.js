@@ -26,7 +26,7 @@ function SearchControl ({setData, handleMessage}){
           console.log(response);
           console.log(response.data);
           if(response.status === 200){
-            setData(response.data);
+            setData('search',response.data);
           }
           handleMessage('success', "The Post was successfully found.");
 

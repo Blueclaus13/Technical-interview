@@ -38,6 +38,7 @@ function App() {
         toastProperties=[];
 
     }
+
   
     setList([...list, toastProperties]);
   };
@@ -50,43 +51,29 @@ function App() {
     .catch(err=>console.log(err))
   }, []);
 
-  const handleModalData =(userId,title,body) =>{
 
-        //Post to Add a new item
-        Axios.post("https://jsonplaceholder.typicode.com/posts",{
-          title: title, 
-          body: body, 
-          userId: userId,
-        })
-        .then((response)=>{ 
-          console.log(response);
-          showToast('success', "The Post was successfully added.");
-          setOpenModal(false)})
-          .catch(function (error){
-            if(error.response){
-                //out of 2XX
-                showToast('fail', "Error, something went wrong");
-                console.log(error.response.data);
-                console.log(error.response.status);
-                console.log(error.response.headers);
-            }else if(error.request) {
-                 // The request was made but no response was received
-                showToast('fail', "Something went wrong");
-                 console.log(error.request);
-            }else {
-                // Something happened in setting up the request that triggered an Error
-                showToast('fail', "Something went wrong");
-                console.log('Error', error.message);
-              }
-              showToast('fail', "Error, something went wrong");
-              console.log(error.config);
-        });
-  };
-
-  const handleSearch =(data)=>{
-    setData([data]);
-  };
   const handleDataChange =(type, data)=>{
+
+    const failure = (error)=>{
+      if(error.response){
+        //out of 2XX
+        showToast('fail', "Error, something went wrong");
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+    }else if(error.request) {
+         // The request was made but no response was received
+        showToast('fail', "Something went wrong");
+         console.log(error.request);
+    }else {
+        // Something happened in setting up the request that triggered an Error
+        showToast('fail', "Something went wrong");
+        console.log('Error', error.message);
+      }
+      showToast('fail', "Error, something went wrong");
+      console.log(error.config);
+    }
+
     switch(type){
       case 'delete':
 
@@ -97,28 +84,41 @@ function App() {
           showToast('success', "The Post was deleted")})
           
           .catch(function (error){
-            if(error.response){
-                //out of 2XX
-                showToast('fail', "Error, something went wrong");
-                console.log(error.response.data);
-                console.log(error.response.status);
-                console.log(error.response.headers);
-            }else if(error.request) {
-                 // The request was made but no response was received
-                showToast('fail', "Something went wrong");
-                 console.log(error.request);
-            }else {
-                // Something happened in setting up the request that triggered an Error
-                showToast('fail', "Something went wrong");
-                console.log('Error', error.message);
-              }
-              showToast('fail', "Error, something went wrong");
-              console.log(error.config);
-        });
+            failure(error)});
 
         break;
       case 'edit':
+        //Edit Post
+        Axios.put(`https://jsonplaceholder.typicode.com/posts/${data.id}`,{
+          title: data.title, 
+          body: data.body, 
+          userId: data.userId,
+        })
+        .then((response)=>{ 
+          console.log(response);
+          showToast('success', "The Post was Edited")})
+          
+          .catch(function (error){
+            failure(error)});
+
+        break;
+      case'new':
+        // New Post
+        Axios.post("https://jsonplaceholder.typicode.com/posts",{
+          title: data.title, 
+          body: data.body, 
+          userId: data.userId,
+        })
+        .then((response)=>{ 
+          console.log(response);
+          showToast('success', "The Post was successfully added.");
+          setOpenModal(false)})
+          .catch(function (error){
+            failure(error)});
         
+        break;
+      case 'search':
+        setData([data]);
         break;
       default:
         console.log("any option")
@@ -133,7 +133,7 @@ function App() {
       <Navbar title={"Interview App"}></Navbar>
       <Toast toastList={list} setList={setList}></Toast>
       <SearchControl
-        setData={handleSearch}
+        setData={handleDataChange}
         handleMessage={showToast}></SearchControl>
         <Button onClick={()=>showToast('success', "The message wasn't sent")}>Toast Success</Button>
 
@@ -141,7 +141,7 @@ function App() {
         <Modal
           titleModal={"New Item"}
           stateModal={setOpenModal}
-          handleChange={handleModalData}
+          handleChange={handleDataChange}
           ></Modal>}
       
       <Button size={"lg"} className={"newItem"}
