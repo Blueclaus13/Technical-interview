@@ -63,8 +63,27 @@ function App() {
         })
         .then((response)=>{ 
           console.log(response);
+          showToast('success', "The Post was successfully added.");
           setOpenModal(false)})
-        .catch((err)=>{console.log(err)});
+          .catch(function (error){
+            if(error.response){
+                //out of 2XX
+                showToast('fail', "Error, something went wrong");
+                console.log(error.response.data);
+                console.log(error.response.status);
+                console.log(error.response.headers);
+            }else if(error.request) {
+                 // The request was made but no response was received
+                showToast('fail', "Something went wrong");
+                 console.log(error.request);
+            }else {
+                // Something happened in setting up the request that triggered an Error
+                showToast('fail', "Something went wrong");
+                console.log('Error', error.message);
+              }
+              showToast('fail', "Error, something went wrong");
+              console.log(error.config);
+        });
   };
 
   const handleSearch =(data)=>{
@@ -77,7 +96,8 @@ function App() {
       <Navbar title={"Interview App"}></Navbar>
       <Toast toastList={list} setList={setList}></Toast>
       <SearchControl
-        setData={handleSearch}></SearchControl>
+        setData={handleSearch}
+        handleMessage={showToast}></SearchControl>
         <Button onClick={()=>showToast('success', "The message wasn't sent")}>Toast Success</Button>
 
       {openModal && 
