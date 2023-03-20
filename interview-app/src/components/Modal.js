@@ -3,18 +3,18 @@ import Button from "./Button";
 import "../styles/modal.css"
 
 
-function Modal({titleModal, stateModal}){
+function Modal({titleModal, stateModal, handleChange}){
 
     const [userId, setUserId] = useState('');
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
 
     function handleSubmit (e){
-        e.preventDefault()
-        console.log(`userID: ${userId}`);
-        console.log(`Title: ${title}`);
-        console.log(`Body: ${body}`);
-
+        e.preventDefault();
+        handleChange(userId,title, body);
+        setUserId('');
+        setTitle('');
+        setBody('');
     };
 
 
@@ -40,6 +40,7 @@ function Modal({titleModal, stateModal}){
                                 pattern="[0-9]+" 
                                 size="1"
                                 onChange={(e)=>setUserId(e.target.value)}
+                                value={userId}
                                 required
                                 ></input>
                         </div>
@@ -50,6 +51,7 @@ function Modal({titleModal, stateModal}){
                                 type="text"
                                 required
                                 placeholder="Add a title here"
+                                value={title}
                                 onChange={(e)=>setTitle(e.target.value)}></input>
                         </div>
 
@@ -59,6 +61,7 @@ function Modal({titleModal, stateModal}){
                                 required
                                 rows={6}
                                 placeholder="Add text here"
+                                value={body}
                                 onChange={(e)=>setBody(e.target.value)}></textarea>
                         </div>
                         <div className="footer">

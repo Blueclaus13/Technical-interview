@@ -8,6 +8,10 @@ function Item({data}){
         console.log("deleting")
     }
 
+    const handleEdit =()=>{
+        console.log("Editing")
+    }
+
 
     return(
         <tr className="row">
@@ -15,11 +19,15 @@ function Item({data}){
             <td data-title="UserID">{data.userId}</td>
             <td data-title="Title"> {data.title}</td>
             <td data-title="Body">{data.body}</td>
-            <td data-title="Action">
+            <td data-title="Action" className="actions">
                 <Button 
                     size={"md"} 
                     className={"delete"}
-                    onClick={()=>handleDelete()}>Delete</Button></td>
+                    onClick={()=>handleDelete()}>Delete</Button>
+                <Button 
+                    size={"md"} 
+                    className={"edit"}
+                    onClick={()=>handleEdit()}>Edit</Button></td>
         </tr>
        
         

@@ -70,3 +70,7 @@
 .input-title{
     padding-top: 2%;
 }
+
+.input-user input{
+    width: 5rem;
+}

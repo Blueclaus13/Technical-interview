@@ -31,4 +31,10 @@ body{
 
 }
 
+.not-data-message{
+  padding: 2%;
+  margin: 1%;
+  color: var(--dark-color);
+}
+
 
