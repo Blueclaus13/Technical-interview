@@ -8,9 +8,20 @@ function SearchControl ({setData, handleMessage}){
     const [value, setValue]= useState('');
     const ref= useRef(null);
 
+    const handleChange =(event)=>{
+        var numbers = /^[0-9]+$/;
+       if(event.target.value.match(numbers))
+      {
+        setValue(event.target.value);
+      }else{
+        handleMessage('fail', "Plase, use only numbers")
+      }
+    };
+
+
     const handleSearch = ()=>{
-        
-        Axios.get(`https://jsonplaceholder.typicode.com/posts/${value}`, {})
+        if(value.length !== 0 && value !== ''){
+            Axios.get(`https://jsonplaceholder.typicode.com/posts/${value}`, {})
         .then((response)=>{ 
           console.log(response);
           console.log(response.data);
@@ -40,6 +51,9 @@ function SearchControl ({setData, handleMessage}){
               handleMessage('fail', "Error, something went wrong");
               console.log(error.config);
         });
+        }else{
+            handleMessage('fail', "Empty line");
+        }
         ref.current.value= '';
         setValue('');
     }
@@ -53,12 +67,16 @@ function SearchControl ({setData, handleMessage}){
                     placeholder="Find..."
                     type="number"
                     name="itemNumber"
+                    id="inputSearch"
                     pattern="[0-9]+"
+                    required
+                    min={0}
                     ref={ref}
-                    onChange={event=>setValue(event.target.value)}
+                    onChange={handleChange}
                     ></input>
                 <Button size={"sm"} className={"find"}
                         onClick={()=>{handleSearch()}}>Search</Button>
+                
              </div>
         </div>
     );

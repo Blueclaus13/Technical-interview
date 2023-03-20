@@ -4,7 +4,7 @@ import Item from "./Item";
 
 
 
-function ListTable({data}){
+function ListTable({data, handleDataChange}){
 
 
     return(
@@ -24,7 +24,8 @@ function ListTable({data}){
                 {data.map((item)=>(
                         <Item 
                         key={item.id}
-                        data={item}></Item>
+                        data={item}
+                        handleDataChange={handleDataChange}></Item>
                     ))}
                 
             </tbody>

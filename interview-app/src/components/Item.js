@@ -1,17 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "./Button";
+import EditPost from "./EditPost";
+import Modal from "./Modal";
 
 
-function Item({data}){
+function Item({data, handleDataChange}){
+    const [isEditing, setEditing]= useState(false);
+    const [isDeleting, setDeleting] = useState(false);
 
-    const handleDelete =()=>{
-        console.log("deleting")
+    const handleDelete =(data)=>{
+        //console.log("deleting");
+        handleDataChange('delete', data);
+        setDeleting(false);
     }
 
-    const handleEdit =()=>{
-        console.log("Editing")
+    const handleEdit =(data)=>{
+        //console.log(data);
+        handleDataChange('edit', data);
+        setEditing(false)
     }
-
 
     return(
         <tr className="row">
@@ -23,11 +30,28 @@ function Item({data}){
                 <Button 
                     size={"md"} 
                     className={"delete"}
-                    onClick={()=>handleDelete()}>Delete</Button>
+                    onClick={()=>setDeleting(true)}>Delete</Button>
+
+                {isDeleting && 
+                    <Modal
+                        titleModal={'Are you sure you want "Delete Post"?'}
+                        changeState={setDeleting}
+                        
+                        > <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
+                        <Button className="yes" onClick={()=>handleDelete(data)}>Yes</Button>
+                        <Button className="cancel" onClick={()=>setDeleting(false)}>No</Button></div>
+                </Modal>}
                 <Button 
                     size={"md"} 
                     className={"edit"}
-                    onClick={()=>handleEdit()}>Edit</Button></td>
+                    onClick={()=>setEditing(true)}>Edit</Button>
+            {isEditing && 
+                   <EditPost
+                        titleModal={"Edit Post"}
+                        changeState={setEditing}
+                        data={data}
+                        changes={handleEdit}></EditPost>
+                    }</td>
         </tr>
        
         
