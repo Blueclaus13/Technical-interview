@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/interview-app/static/css/main.cc78ef16.css",
-    "main.js": "/interview-app/static/js/main.a1374a1e.js",
-    "static/js/787.e41f7326.chunk.js": "/interview-app/static/js/787.e41f7326.chunk.js",
-    "index.html": "/interview-app/index.html",
-    "main.cc78ef16.css.map": "/interview-app/static/css/main.cc78ef16.css.map",
-    "main.a1374a1e.js.map": "/interview-app/static/js/main.a1374a1e.js.map",
-    "787.e41f7326.chunk.js.map": "/interview-app/static/js/787.e41f7326.chunk.js.map"
+    "main.css": "/Technical-interview/static/css/main.cc78ef16.css",
+    "main.js": "/Technical-interview/static/js/main.cbd86682.js",
+    "static/js/787.e41f7326.chunk.js": "/Technical-interview/static/js/787.e41f7326.chunk.js",
+    "index.html": "/Technical-interview/index.html",
+    "main.cc78ef16.css.map": "/Technical-interview/static/css/main.cc78ef16.css.map",
+    "main.cbd86682.js.map": "/Technical-interview/static/js/main.cbd86682.js.map",
+    "787.e41f7326.chunk.js.map": "/Technical-interview/static/js/787.e41f7326.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.cc78ef16.css",
-    "static/js/main.a1374a1e.js"
+    "static/js/main.cbd86682.js"
   ]
 }
